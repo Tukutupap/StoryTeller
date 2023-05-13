@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 16,
     fontWeight: "200",
-  }
+  },
 });
 
-  export default styles;
+export default styles;

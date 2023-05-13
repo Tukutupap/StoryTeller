@@ -1,6 +1,6 @@
 /**
  * StoryTeller App
- * 
+ *
  *
  * @format
  */
@@ -13,7 +13,7 @@ function App() {
   return (
     <SafeAreaView>
       <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <NewStory/>
+        <NewStory />
       </ScrollView>
     </SafeAreaView>
   );
