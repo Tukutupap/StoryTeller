@@ -1,10 +1,10 @@
 import { React } from "react";
-import { BasicTextInput } from "../../";
 import { View, Button } from "react-native";
 import { useForm, FormProvider } from "react-hook-form";
 import utils from "../../../utils/Utils";
+import styles from "./Styles";
 
-export default function Form({ setFormValues, submitText }) {
+export default function Form({ setFormValues, submitText, children }) {
   const { ...methods } = useForm({ mode: "onChange" });
 
   const onSubmit = (data) => {
@@ -15,21 +15,25 @@ export default function Form({ setFormValues, submitText }) {
     return console.log({ errors });
   };
 
+  const clearForm = () => {
+    methods.reset();
+    setFormValues("");
+  };
+
   return (
     <View>
-      <FormProvider {...methods}>
-        <BasicTextInput name="animal1" placeholder="Animal 1" />
-        <BasicTextInput name="animal2" placeholder="Animal 2" />
-      </FormProvider>
-
-      <Button
-        title={
-          utils.isString(submitText) && submitText.length > 0
-            ? submitText
-            : "Generate"
-        }
-        onPress={methods.handleSubmit(onSubmit, onError)}
-      />
+      <FormProvider {...methods}>{children}</FormProvider>
+      <View style={styles.formsButtonToolbar}>
+        <Button title="Clear" onPress={clearForm} />
+        <Button
+          title={
+            utils.isString(submitText) && submitText.length > 0
+              ? submitText
+              : "Generate"
+          }
+          onPress={methods.handleSubmit(onSubmit, onError)}
+        />
+      </View>
     </View>
   );
 }
