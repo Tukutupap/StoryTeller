@@ -1,17 +1,12 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-
-  sectionTitle: {
+  headerTitle: {
     fontSize: 24,
     fontWeight: "600",
   },
 
-  sectionDescription: {
+  headerDescription: {
     marginTop: 8,
     fontSize: 16,
     fontWeight: "400",

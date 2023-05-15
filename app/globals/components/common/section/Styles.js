@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  storyText: {
-    fontSize: 16,
-    fontWeight: "200",
+  sectionContainer: {
+    marginTop: 32,
+    paddingHorizontal: 24,
   },
 });
 

@@ -1,16 +1,17 @@
 import { React, useState } from "react";
-import { Text, View } from "react-native";
+import { Text } from "react-native";
 import styles from "./Styles";
+import { Section } from "../";
 
-function Header({ children, title }) {
+function Header({ title, description }) {
   const [text, onChangeText] = useState("");
   const [number, onChangeNumber] = useState("");
 
   return (
-    <View style={styles.sectionContainer}>
-      <Text style={styles.sectionTitle}>{title}</Text>
-      <Text style={styles.sectionDescription}>{children}</Text>
-    </View>
+    <Section>
+      <Text style={styles.headerTitle}>{title}</Text>
+      <Text style={styles.headerDescription}>{description}</Text>
+    </Section>
   );
 }
 

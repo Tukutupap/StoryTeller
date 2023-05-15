@@ -12,9 +12,9 @@ function NewStory() {
 
   return (
     <View>
-      <Header title="Story Teller">Generate a Story</Header>
+      <Header title="Story Teller" description="Generate a Story" />
       <ParameterSection setStory={setStory} />
-      <StorySection story={story} />
+      <StorySection story={JSON.stringify(story)} />
     </View>
   );
 }
