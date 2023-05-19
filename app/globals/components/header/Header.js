@@ -1,12 +1,9 @@
-import { React, useState } from "react";
+import { React } from "react";
 import { Text } from "react-native";
 import styles from "./Styles";
 import { Section } from "../";
 
-function Header({ title, description }) {
-  const [text, onChangeText] = useState("");
-  const [number, onChangeNumber] = useState("");
-
+export default function Header({ title, description }) {
   return (
     <Section>
       <Text style={styles.headerTitle}>{title}</Text>
@@ -14,5 +11,3 @@ function Header({ title, description }) {
     </Section>
   );
 }
-
-export default Header;

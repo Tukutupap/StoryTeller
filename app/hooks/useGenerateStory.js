@@ -1,51 +1,23 @@
-import { useState, useEffect } from "react";
-import { axios } from "axios";
-import { RAPID_API_KEY } from "@env";
+import { useOpenAI } from "./";
 
-const rapidApiKey = RAPID_API_KEY;
+export function useGenerateStory(props) {
+  const [isLoading, response, openAIRequest, error] = useOpenAI(props);
 
-const useGenerateStory = (endpoint, query) => {
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  const options = {
-    method: "GET",
-    url: `https://jsearch.p.rapidapi.com/${endpoint}`,
-    headers: {
-      "X-RapidAPI-Key": rapidApiKey,
-      "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
-    },
-    params: {
-      ...query,
-    },
+  const generateStory = async (storyParams) => {
+    openAIRequest({
+      model: "text-davinci-003",
+      prompt:
+        "Write a 25 word story for a 3 year old about the following animals: " +
+        storyParams.animal1 +
+        ", " +
+        storyParams.animal2,
+      temperature: 0.5,
+      max_tokens: 64,
+      top_p: 1.0,
+      frequency_penalty: 0.0,
+      presence_penalty: 0.0,
+    });
   };
 
-  const fetchData = async () => {
-    setIsLoading(true);
-
-    try {
-      const response = await axios.request(options);
-
-      setData(response.data.data);
-      setIsLoading(false);
-    } catch (error) {
-      setError(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const refetch = () => {
-    setIsLoading(true);
-    fetchData();
-  };
-
-  return { data, isLoading, error, refetch };
-};
-
-export default useGenerateStory;
+  return [isLoading, response, generateStory, error];
+}

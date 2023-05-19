@@ -1,4 +1,4 @@
 import NewStory from "./newStory/NewStory.js";
-import GenerateStoryForm from "./generateStoryForm/GenerateStoryForm.js";
+import NewStoryForm from "./newStoryForm/NewStoryForm.js";
 
-export { NewStory, GenerateStoryForm };
+export { NewStory, NewStoryForm };

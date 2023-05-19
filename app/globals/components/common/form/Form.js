@@ -4,11 +4,17 @@ import { useForm, FormProvider } from "react-hook-form";
 import utils from "../../../utils/Utils";
 import styles from "./Styles";
 
-export default function Form({ setFormValues, submitText, children }) {
+export default function Form({
+  setFormValues,
+  setSubmitPressed,
+  submitText,
+  children,
+}) {
   const { ...methods } = useForm({ mode: "onChange" });
 
   const onSubmit = (data) => {
     setFormValues(data);
+    setSubmitPressed(true);
   };
 
   const onError = (errors, e) => {
@@ -17,7 +23,7 @@ export default function Form({ setFormValues, submitText, children }) {
 
   const clearForm = () => {
     methods.reset();
-    setFormValues("");
+    setFormValues(null);
   };
 
   return (
